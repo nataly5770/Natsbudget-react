@@ -1,52 +1,33 @@
-import { Button, ButtonGroup, Container, Form, Grid, GridColumn, GridRow, Header, Icon, Segment, Statistic, StatisticLabel, StatisticValue } from 'semantic-ui-react';
+import { Container, Grid, GridColumn, GridRow, Icon, Segment } from 'semantic-ui-react';
 import './App.css';
-import ButtonSaveOrCancel from './components/ButtonSaveOrCancel';
-import MainHeader from './components/MainHeade';
+import DisplayBalance from './components/DisplayBalance';
+import MainHeader from './components/MainHeader';
+import NewEntryForm from './components/NewEntryForm';
 
 function App() {
   return (
     <Container>
       <MainHeader title='Natsbudget'/>
-
-
-      <Statistic size='small'>
-        <StatisticLabel>Your balance</StatisticLabel>
-        <StatisticValue>2,550.53</StatisticValue>
-      </Statistic>
-    
-    
+      < DisplayBalance title='Your balance' value='1253.54' size='small'/>
+     
     <Segment textAlign='center'>
       <Grid columns={2} divided>
         <GridRow>
           <GridColumn>
-            <Statistic size='tiny' color='green'>
-              <StatisticLabel style={{textAlign:'left'}}>
-                Incoming:
-              </StatisticLabel>
-              <StatisticValue>1,045.00</StatisticValue>
-            </Statistic>
+          < DisplayBalance title='Income' value='1253.54' color='green'/>
           </GridColumn>
-          
-          
+
           <GridColumn>
-          <Statistic size='tiny' color='red'>
-              <StatisticLabel style={{textAlign:'left'}}>
-                Expenses:
-              </StatisticLabel>
-              <StatisticValue>623.50</StatisticValue>
-            </Statistic>
+          < DisplayBalance title='Expenses' value='623,50' color='pink'/>
          </GridColumn>
-
-
         </GridRow>
       </Grid>
       </Segment>
 
-
 <MainHeader title='History' type="h3"/>
      
 
-      <Segment color='red'>
+      <Segment color='pink'>
         <Grid columns={3} textAlign="right">
           <GridRow>
 <GridColumn width={10} textAlign='left'>Something</GridColumn>
@@ -77,7 +58,7 @@ function App() {
 
 
 
-      <Segment color='red'>
+      <Segment color='pink'>
         <Grid columns={3} textAlign="right">
           <GridRow>
 <GridColumn width={10} textAlign='left'>Something</GridColumn>
@@ -89,30 +70,8 @@ function App() {
           </GridRow>
         </Grid>
       </Segment>
-
-
 <MainHeader title="Add new transaction" type="h3"/>
-      <Form unstackable>
-        <Form.Group>
-          <Form.Input 
-          icon='tags' 
-          width={12} 
-          label='Description'
-          placeholder='New shinny thing' 
-          />
-
-          <Form.Input 
-          width={4}
-          label='Value'
-          placeholder='100.00'
-          icon='dollar'
-          iconPosition='left'>
-          </Form.Input>
-        </Form.Group>
-        
-<ButtonSaveOrCancel />
-
-      </Form>
+<NewEntryForm />   
       </Container>
   ); 
 }
