@@ -11,44 +11,13 @@ function App() {
     <Container>
         <MainHeader title='Natsbudget'/>
         < DisplayBalance title='Your balance' value='1253.54' size='small'/>
+      
       < DisplayBalances/>
-
-
 <MainHeader title='History' type="h3"/>
-     
 
-      <Segment color='pink'>
-        <Grid columns={3} textAlign="right">
-          <GridRow>
-<GridColumn width={10} textAlign='left'>Something</GridColumn>
-<GridColumn width={3} textAlign='rigth'>$10,00</GridColumn>
-<GridColumn width={3}>
-<Icon name='edit' bordered />
-<Icon name='trash'bordered/>
-</GridColumn>
-          </GridRow>
-        </Grid>
-      </Segment>
+<EntryLine description="income" value="10.00$"/>
+<EntryLine description="expense" value="10.00$" isExpnese/>
 
-
-
-
-      <Segment color='green'>
-        <Grid columns={3} textAlign="right">
-          <GridRow>
-<GridColumn width={10} textAlign='left'>Something else</GridColumn>
-<GridColumn width={3} textAlign='rigth'>$100,00</GridColumn>
-<GridColumn width={3}>
-<Icon name='edit' bordered />
-<Icon name='trash'bordered/>
-</GridColumn>
-          </GridRow>
-        </Grid>
-      </Segment>
-
-
-<EntryLine />
-<EntryLine />
     
 
 <MainHeader title="Add new transaction" type="h3"/>
