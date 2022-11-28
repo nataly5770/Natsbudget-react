@@ -2,6 +2,7 @@ import { Container, Grid, GridColumn, GridRow, Icon, Segment } from 'semantic-ui
 import './App.css';
 import DisplayBalance from './components/DisplayBalance';
 import DisplayBalances from './components/DisplayBalances';
+import EntryLine from './components/EntryLine';
 import MainHeader from './components/MainHeader';
 import NewEntryForm from './components/NewEntryForm';
 
@@ -10,7 +11,7 @@ function App() {
     <Container>
         <MainHeader title='Natsbudget'/>
         < DisplayBalance title='Your balance' value='1253.54' size='small'/>
-      < DisplayBalances />
+      < DisplayBalances/>
 
 
 <MainHeader title='History' type="h3"/>
@@ -46,19 +47,10 @@ function App() {
       </Segment>
 
 
+<EntryLine />
+<EntryLine />
+    
 
-      <Segment color='pink'>
-        <Grid columns={3} textAlign="right">
-          <GridRow>
-<GridColumn width={10} textAlign='left'>Something</GridColumn>
-<GridColumn width={3} textAlign='rigth'>$20,00</GridColumn>
-<GridColumn width={3}>
-<Icon name='edit' bordered />
-<Icon name='trash'bordered/>
-</GridColumn>
-          </GridRow>
-        </Grid>
-      </Segment>
 <MainHeader title="Add new transaction" type="h3"/>
 <NewEntryForm />   
       </Container>
