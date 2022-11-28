@@ -1,4 +1,5 @@
-import { Container, Grid, GridColumn, GridRow, Icon, Segment } from 'semantic-ui-react';
+import { useState } from 'react';
+import { Container } from 'semantic-ui-react';
 import './App.css';
 import DisplayBalance from './components/DisplayBalance';
 import DisplayBalances from './components/DisplayBalances';
@@ -7,6 +8,7 @@ import MainHeader from './components/MainHeader';
 import NewEntryForm from './components/NewEntryForm';
 
 function App() {
+  const [entries, setEntries] = useState(initialEntries);
   return (
     <Container>
         <MainHeader title='Natsbudget'/>
@@ -15,10 +17,15 @@ function App() {
       < DisplayBalances/>
 <MainHeader title='History' type="h3"/>
 
-<EntryLine description="income" value="10.00$"/>
-<EntryLine description="expense" value="10.00$" isExpnese/>
+{entries.map((entry) => (
 
-    
+<EntryLine 
+
+description={entry.description} 
+value={entry.value} 
+isExpnese={entry.isExpnese}
+/>
+))}
 
 <MainHeader title="Add new transaction" type="h3"/>
 <NewEntryForm />   
@@ -26,3 +33,29 @@ function App() {
   ); 
 }
 export default App;
+var initialEntries = [
+  {
+  description: "Work income",
+    value: "$1000,00",
+    isExpnese: false,
+  },
+
+  {
+    description:"water bill",
+  value: "$20,00",
+  isExpnese: true,
+  },
+
+  {
+  description:"rent",
+  value: "$300",
+  isExpnese: true,
+  },
+
+  {
+    description:"power bill",
+  value: "50.00$",
+  isExpnese: true,
+  },
+
+];
