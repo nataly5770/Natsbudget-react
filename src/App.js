@@ -11,10 +11,21 @@ function App() {
   const [entries,setEntries] = useState(initialEntries);
 
   //const deleteEntry = (id) => {}
-function deleteEntry(id) {
-const result = entries.filter(entry => entry.id !== id);
+
+  function deleteEntry(id) {
+const result = entries.filter((entry) => entry.id !== id); 
+setEntries(result);
+}
+
+function addEntry(description, value) {
+const result = entries.concat({
+  id: entries.length+1, 
+  description, 
+  value,
+
+});
+console.log('result', result);
 console.log('entries', entries);
-console.log('result', result); 
 setEntries(result);
 }
 
@@ -36,7 +47,10 @@ setEntries(result);
 
 
 <MainHeader title="Add new transaction" type="h3"/>
-<NewEntryForm />   
+<NewEntryForm addEntry={addEntry} /> 
+
+
+
       </Container>
   ); 
 }
