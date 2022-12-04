@@ -24,4 +24,4 @@ return (
 )
 }
 
-export default EntryLine 
+export default EntryLine; 
