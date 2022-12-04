@@ -8,15 +8,33 @@ import MainHeader from './components/MainHeader';
 import NewEntryForm from './components/NewEntryForm';
 
 function App() {
-  const [entries] = useState(initialEntries);
+  const [entries,setEntries] = useState(initialEntries);
+
+  //const deleteEntry = (id) => {}
+function deleteEntry(id) {
+const result = entries.filter(entry => entry.id !== id);
+console.log('entries', entries);
+console.log('result', result); 
+setEntries(result);
+}
+
+
   return (
     <Container>
         <MainHeader title='Natsbudget'/>
         < DisplayBalance title='Your balance' value='1253.54' size='small'/>
       
       < DisplayBalances/>
+
 <MainHeader title='History' type="h3"/>
-<EntryLines entries={entries}/>
+
+
+
+
+<EntryLines entries={entries} deleteEntry={deleteEntry}/>
+
+
+
 <MainHeader title="Add new transaction" type="h3"/>
 <NewEntryForm />   
       </Container>
@@ -25,24 +43,28 @@ function App() {
 export default App;
 var initialEntries = [
   {
+    id: 1,
   description: "Work income",
     value: "$1000,00",
     isExpnese: false,
   },
 
   {
+    id:2, 
     description:"water bill",
   value: "$20,00",
   isExpnese: true,
   },
 
   {
+    id:3, 
   description:"rent",
   value: "$300",
   isExpnese: true,
   },
 
   {
+    id:4,
     description:"power bill",
   value: "50.00$",
   isExpnese: true,
