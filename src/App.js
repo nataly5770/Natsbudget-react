@@ -17,11 +17,12 @@ const result = entries.filter((entry) => entry.id !== id);
 setEntries(result);
 }
 
-function addEntry(description, value) {
+function addEntry(description, value, isExpense) {
 const result = entries.concat({
   id: entries.length+1, 
   description, 
   value,
+  isExpense,
 
 });
 console.log('result', result);
