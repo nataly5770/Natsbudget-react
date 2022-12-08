@@ -25,7 +25,7 @@ import ModalEdit from './ModalEdit';
     </GridRow>
   </Grid>
   </Segment>
-  <ModalEdit isOpen={isOpen}/>
+  <ModalEdit isOpen={isOpen} setIsOpen={setIsOpen}/>
 </Fragment>
 
   )
