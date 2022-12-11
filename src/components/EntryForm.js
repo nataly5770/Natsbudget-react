@@ -1,16 +1,14 @@
 import React, { Fragment } from "react";
 import { Checkbox, Form, Segment } from "semantic-ui-react";
 
-function EntryForm(
-{description, value, isExpense, setDescription, setValue, setIsExpense}
-
-
+function EntryForm({
+  description, value, isExpense, setDescription, setValue, setIsExpense}
 ) {
   
     return(
 <Fragment>
 
-        <Form.Group>
+        <Form.Group width={3}>
         <Form.Input 
         icon='tags' 
         width={12} 
@@ -38,6 +36,7 @@ function EntryForm(
         />
       </Segment>
       </Fragment>
+
     );
 }
 

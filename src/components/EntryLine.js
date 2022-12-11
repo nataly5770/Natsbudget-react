@@ -2,12 +2,17 @@
   import { Grid, GridColumn, GridRow, Icon, Segment } from 'semantic-ui-react';
 import ModalEdit from './ModalEdit';
 
-  function EntryLine({id, description, value,isExpnese = false, deleteEntry}){
-    const [isOpen, setIsOpen ] = useState(false);
-  
+  function EntryLine({
+    id, 
+    description, 
+    value,
+    isExpnese = false, 
+    deleteEntry, 
+    editEntry,
+
+  }){
+   
     return (
-
-
     <Fragment>
   <Segment color={isExpnese ? 'red' : 'green'}>
   <Grid columns={3} textAlign="right">
@@ -19,13 +24,13 @@ import ModalEdit from './ModalEdit';
     {value}
     </GridColumn>
   <GridColumn width={3}>
-  <Icon name='edit' bordered onClick={() => setIsOpen(true)}/>
+  <Icon name='edit' bordered onClick={() => editEntry(id)}/>
   <Icon name='trash' bordered onClick={()=> deleteEntry(id) }/>
   </GridColumn>
     </GridRow>
   </Grid>
   </Segment>
-  <ModalEdit isOpen={isOpen} setIsOpen={setIsOpen}/>
+  
 </Fragment>
 
   )

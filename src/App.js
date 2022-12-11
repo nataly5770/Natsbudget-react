@@ -5,16 +5,33 @@ import DisplayBalance from './components/DisplayBalance';
 import DisplayBalances from './components/DisplayBalances';
 import EntryLines from './components/EntryLines';
 import MainHeader from './components/MainHeader';
+import ModalEdit from './components/ModalEdit';
 import NewEntryForm from './components/NewEntryForm';
 
 function App() {
   const [entries,setEntries] = useState(initialEntries);
-
+  const [description, setDescription] = useState('');
+  const [value, setValue] = useState('');
+  const [isExpense, setIsExpense] = useState(true);
+  const [isOpen, setIsOpen ] = useState(false);
+  
   //const deleteEntry = (id) => {}
 
   function deleteEntry(id) {
 const result = entries.filter((entry) => entry.id !== id); 
 setEntries(result);
+}
+
+function editEntry(id){ 
+  console.log('edit entry with id ${id}');
+  if(id){
+    const index = entries.findIndex(entry => entry.id === id);
+    const entry = entries[index];
+    setDescription(entry.description);
+    setValue(entry.value);
+    setIsExpense(entry.isExpnese);
+    setIsOpen(true);
+  }
 }
 
 function addEntry(description, value, isExpense) {
@@ -41,21 +58,46 @@ setEntries(result);
 <MainHeader title='History' type="h3"/>
 
 
+<EntryLines 
+entries={entries} 
+deleteEntry={deleteEntry} 
+editEntry={editEntry}
 
-
-<EntryLines entries={entries} deleteEntry={deleteEntry}/>
-
-
+/>
 
 <MainHeader title="Add new transaction" type="h3"/>
-<NewEntryForm addEntry={addEntry} /> 
+<NewEntryForm 
+
+addEntry={addEntry} 
+description={description}
+value={value}
+isExpense={isExpense}
+setValue={setValue}
+setDescription={setDescription}
+setIsExpense={setIsExpense}
+
+/> 
+<ModalEdit 
+isOpen={isOpen} 
+setIsOpen={setIsOpen} 
+addEntry={addEntry} 
+description={description}
+value={value}
+isExpense={isExpense}
+setValue={setValue}
+setDescription={setDescription}
+setIsExpense={setIsExpense}
 
 
+/>
 
       </Container>
   ); 
 }
 export default App;
+
+
+
 var initialEntries = [
   {
     id: 1,
