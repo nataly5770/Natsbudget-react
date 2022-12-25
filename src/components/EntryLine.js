@@ -1,21 +1,24 @@
   import React, { Fragment } from 'react';
   import { Grid, GridColumn, GridRow, Icon, Segment } from 'semantic-ui-react';
-
+  import {useDispatch} from 'react-redux';
+import { removeEntryRedux } from '../actions/entries.actions';
 
   function EntryLine({
     id, 
     description, 
     value,
     isExpnese = false, 
-    deleteEntry, 
     editEntry,
 
   }){
    
+
+    const dispatch = useDispatch();
     return (
     <Fragment>
   <Segment color={isExpnese ? 'red' : 'green'}>
   <Grid columns={3} textAlign="right">
+    
     <GridRow>
   <GridColumn width={10} textAlign='left'>
     {description}
@@ -24,8 +27,11 @@
     {value}
     </GridColumn>
   <GridColumn width={3}>
+
   <Icon name='edit' bordered onClick={() => editEntry(id)}/>
-  <Icon name='trash' bordered onClick={()=> deleteEntry(id) }/>
+  <Icon name='trash' bordered 
+  onClick={()=> dispatch(removeEntryRedux(id)
+  ) }/>  
   </GridColumn>
     </GridRow>
   </Grid>
@@ -37,3 +43,4 @@
   }
 
   export default EntryLine; 
+

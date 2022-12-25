@@ -7,11 +7,10 @@ import EntryLines from './components/EntryLines';
 import MainHeader from './components/MainHeader';
 import ModalEdit from './components/ModalEdit';
 import NewEntryForm from './components/NewEntryForm';
-
+import {useSelector} from 'react-redux'
 
 
 function App() {
-  const [entries,setEntries] = useState(initialEntries);
   const [description, setDescription] = useState('');
   const [value, setValue] = useState('');
   const [isExpense, setIsExpense] = useState(true);
@@ -20,7 +19,9 @@ function App() {
   const [incomeTotal, setIncomeTotal] = useState(0);
   const [expenseTotal, setExpenseTotal] = useState(0);
   const [total, setTotal] = useState(0);
-
+  const entries = useSelector((state) => state.entries);
+  
+  
   useEffect(() => {
     if(!isOpen && entryID) {
       const index = entries.findIndex(entry => entry.id === entryID);
@@ -28,7 +29,7 @@ function App() {
       newEntries[index].description = description; 
       newEntries[index].value = value; 
       newEntries[index].isExpnese = isExpense; 
-      setEntries(newEntries);
+      //setEntries(newEntries);
       resetEntry();
     }
 
@@ -55,7 +56,7 @@ entries.map((entry) => {
 
   function deleteEntry(id) {
     const result = entries.filter((entry) => entry.id !== id); 
-    setEntries(result);
+    //setEntries(result);
 }
 
 function editEntry(id){ 
@@ -81,7 +82,7 @@ const result = entries.concat({
 });
 console.log('result', result);
 console.log('entries', entries);
-setEntries(result);
+//setEntries(result);
 resetEntry();
 }
 
@@ -105,13 +106,7 @@ function resetEntry(){
 <MainHeader title='History' type="h3"/>
 
 
-<EntryLines 
-entries={entries} 
-deleteEntry={deleteEntry} 
-editEntry={editEntry}
-
-/>
-
+<EntryLines entries={entries} editEntry={editEntry}/>
 <MainHeader title="Add new transaction" type="h3"/>
 <NewEntryForm 
 
@@ -144,34 +139,3 @@ setIsExpense={setIsExpense}
 export default App;
 
 
-
-var initialEntries = [
-  {
-    id: 1,
-  description: "Work income",
-    value: 25.00,
-    isExpnese: false,
-  },
-
-  {
-    id:2, 
-    description:"water bill",
-  value: 25,
-  isExpnese: true,
-  },
-
-  {
-    id:3, 
-  description:"rent",
-  value: 3.000,
-  isExpnese: true,
-  },
-
-  {
-    id:4,
-    description:"power bill",
-  value: 650,
-  isExpnese: true,
-  },
-
-];

@@ -1,9 +1,9 @@
- const reducers = (state = initialEntries, action) => {
+ const reducer = (state = initialEntries, action) => {
     let newEntries; 
   
   switch (action.type) {
     case 'ADD_ENTRY':
-       newEntries = entries.state( {...action.payload});
+       newEntries = state.contact({...action.payload});
       return newEntries;
     case 'REMOVE_ENTRY':
        newEntries = state.filter(entry => entry.id !== action.payload.id);
@@ -13,7 +13,7 @@
      return state; 
       }
   }; 
-export default reducers;
+export default reducer;
 
 var initialEntries = [
     {
