@@ -50,8 +50,7 @@ entries.map((entry) => {
   }, [entries]);
 ///
 
-const store = createStore((state = initialEntries, action) => {
-  console.log(action);
+function entriesReducer(state = initialEntries, action) {
   let newEntries; 
 
 switch (action.type) {
@@ -64,8 +63,10 @@ switch (action.type) {
 
   default:
    return state; 
+    }
 }
-});
+
+const store = createStore(entriesReducer);
 
 store.subscribe(()=> {
   console.log('store: ', store.getState());
@@ -93,10 +94,7 @@ function removeEntryRedux(id) {
 
 store.dispatch(addEntryRedux(payload_add));
 store.dispatch(removeEntryRedux(1));
-store.dispatch(removeEntryRedux(2));
-store.dispatch(removeEntryRedux(3));
-store.dispatch(removeEntryRedux(4));
-store.dispatch(removeEntryRedux(5));
+
 ///
 
 
