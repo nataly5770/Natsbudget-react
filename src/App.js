@@ -11,31 +11,17 @@ import {useSelector} from 'react-redux'
 
 
 function App() {
-  const [description, setDescription] = useState('');
-  const [value, setValue] = useState('');
-  const [isExpense, setIsExpense] = useState(true);
-  const [isOpen, setIsOpen ] = useState(false);
-  const [entryID, setEntryId] = useState();
+
   const [incomeTotal, setIncomeTotal] = useState(0);
   const [expenseTotal, setExpenseTotal] = useState(0);
   const [total, setTotal] = useState(0);
-  const isOpenRedux = useSelector(state => state.modals.isOpen);
+  const [entry, setEntry] = useState();
+  const {isOpen, id} = useSelector(state => state.modals);
   const entries = useSelector((state) => state.entries);
-  
-  
   useEffect(() => {
-    if(!isOpen && entryID) {
-      const index = entries.findIndex(entry => entry.id === entryID);
-      const newEntries = [...entries];
-      newEntries[index].description = description; 
-      newEntries[index].value = value; 
-      newEntries[index].isExpnese = isExpense; 
-      //setEntries(newEntries);
-      resetEntry();
-    }
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isOpen]);
+    const index = entries.findIndex(entry => entry.id === id)
+    setEntry(entries[index]);
+  }, [isOpen, id]);
 
   useEffect(()=> {
     let totalIncomes = 0;
@@ -52,39 +38,6 @@ entries.map((entry) => {
   }, [entries]);
 
 
-function editEntry(id){ 
-  console.log(`edit entry with id ${id}`);
-  if(id){
-    const index = entries.findIndex((entry) => entries);
-    const entry = entries[index];
-    setEntryId(id);
-    setDescription(entry.description);
-    setValue(entry.value);
-    setIsExpense(entry.isExpnese);
-    setIsOpen(true);
-  }
-}
-
-function addEntry() {
-const result = entries.concat({
-  id: entries.length+1, 
-  description, 
-  value,
-  isExpense,
-
-});
-console.log('result', result);
-console.log('entries', entries);
-//setEntries(result);
-resetEntry();
-}
-
-function resetEntry(){
-  setDescription('');
-  setValue('');
-  setIsOpen(true);
-
-}
 
   return (
     <Container>
@@ -99,33 +52,10 @@ function resetEntry(){
 <MainHeader title='History' type="h3"/>
 
 
-<EntryLines entries={entries} editEntry={editEntry}/>
+<EntryLines entries={entries}/>
 <MainHeader title="Add new transaction" type="h3"/>
-<NewEntryForm 
-
-addEntry={addEntry} 
-description={description}
-value={value}
-isExpense={isExpense}
-setValue={setValue}
-setDescription={setDescription}
-setIsExpense={setIsExpense}
-
-/> 
-<ModalEdit 
-isOpen={isOpenRedux} 
-setIsOpen={setIsOpen} 
-addEntry={addEntry} 
-description={description}
-value={value}
-isExpense={isExpense}
-setValue={setValue}
-setDescription={setDescription}
-setIsExpense={setIsExpense}
-
-
-/>
-
+<NewEntryForm /> 
+<ModalEdit isOpen={isOpen} {...entry}/>
       </Container>
   ); 
 }

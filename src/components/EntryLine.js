@@ -8,7 +8,6 @@ import {openEditModal} from '../actions/modals.actions'
     description, 
     value,
     isExpnese = false, 
-    editEntry,
 
   }){
    
@@ -40,7 +39,7 @@ import {openEditModal} from '../actions/modals.actions'
   onClick={()=> dispatch(removeEntryRedux(id)
   ) }/>  
 
-  
+
   </GridColumn>
     </GridRow>
   </Grid>

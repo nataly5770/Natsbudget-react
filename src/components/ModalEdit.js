@@ -32,7 +32,7 @@ function ModalEdit({
 <Modal.Actions>
 <Button onClick={() => dispatch (closeEditModal())}> Close </Button>
 
-<Button onClick={() => setIsOpen (false)} primary> 
+<Button onClick={() => dispatch (closeEditModal())} primary> 
 Ok 
 </Button>
 
