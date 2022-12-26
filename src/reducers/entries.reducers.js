@@ -2,13 +2,19 @@
     let newEntries; 
   
   switch (action.type) {
+    
     case 'ADD_ENTRY':
        newEntries = state.contact({...action.payload});
       return newEntries;
     case 'REMOVE_ENTRY':
        newEntries = state.filter(entry => entry.id !== action.payload.id);
       return newEntries;  
-  
+
+    case 'UPDATE_ENTRY':
+        newEntries = [...state];
+        const index = newEntries(entry => entry.id === action.payload.id)
+        newEntries[index] = {...action.payload.entry};
+        return newEntries;
     default:
      return state; 
       }
