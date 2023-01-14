@@ -7,14 +7,16 @@ import EntryForm from "./EntryForm";
 
 function ModalEdit({
     isOpen, 
-    setIsOpen,
     description,
     value, 
     isExpense,
+    id,
+
  
 }) {
     const dispatch = useDispatch();
     const entryUpdate = useEntryDetails(description, value, isExpense);
+
     return (
         <Modal open={isOpen}>
         <Modal.Header>Edit entry</Modal.Header>
@@ -31,14 +33,12 @@ function ModalEdit({
 </Modal.Content>
 <Modal.Actions>
 <Button onClick={() => dispatch (closeEditModal())}> Close </Button>
-
-<Button onClick={() => dispatch (closeEditModal())} primary> 
-Ok 
+<Button onClick={() => entryUpdate.updateEntry(id)} primary> 
+Ok
 </Button>
-
 </Modal.Actions>
 </Modal>
-    )
+    );
 }
 
 export default ModalEdit;
